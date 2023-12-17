@@ -10,11 +10,11 @@ export default function Search({ placeholder }: { placeholder: string }) {
 	const { replace } = useRouter();
 
 	const handleSearch = useDebouncedCallback((term: string) => {
-		console.log('Searching...', term);
 		const params = new URLSearchParams(searchParams);
+		params.set('page', '1');
 		term ? params.set('query', term) : params.delete('query');
 		replace(`${pathname}?${params.toString()}`);
-	}, 300);
+	}, 400);
 
 	return (
 		<div className='relative flex flex-1 flex-shrink-0'>
